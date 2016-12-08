@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/jaredallard/nexe](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jaredallard/nexe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://david-dm.org/jaredallard/nexe.svg)](https://david-dm.org/jaredallard/nexe)
 [![Stories in Ready](https://badge.waffle.io/jaredallard/nexe.svg?label=ready&title=Ready)](http://waffle.io/jaredallard/nexe)
-[![Circle CI](https://circleci.com/gh/jaredallard/nexe/tree/master.svg?style=svg)](https://circleci.com/gh/jaredallard/nexe/tree/master)
+[![Circle CI](https://circleci.com/gh/jaredallard/nexe/tree/master.svg?style=shield)](https://circleci.com/gh/jaredallard/nexe/tree/master)
 
 Nexe is a command-line utility that compiles your Node.js application into a single executable file.
 
@@ -45,7 +45,7 @@ In this case nexe won't bundle the file
 	if (someCheck) {
 		x = require("./ver1.js");
 	} else {
-		x = require("./var2.js");
+		x = require("./ver2.js");
 	}
 ```
 
@@ -151,6 +151,11 @@ nexe.compile({
 	resourceRoot: [ 'path/' ], // where to embed the resourceFiles.
 	flags: true, // use this for applications that need command line flags.
 	jsFlags: "--use_strict", // v8 flags
+	startupSnapshot: 'path/to/snapshot.js', // when you want to specify a script to be
+											// added to V8's startup snapshot. This V8
+											// feature deserializes a heap to save startup time.
+											// More information in this blog post:
+											// http://v8project.blogspot.de/2015/09/custom-startup-snapshots.html
 	framework: "node" // node, nodejs, or iojs
 }, function(err) {
 	if(err) {
